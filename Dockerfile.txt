@@ -1,0 +1,14 @@
+# Verwenden Sie das offizielle Langflow-Basisimage
+FROM langflowai/langflow:latest
+
+# Installieren Sie zusätzliche Pakete, die benötigt werden
+RUN apt-get update && apt-get install -y vim
+
+# Kopieren Sie Ihre eigenen Konfigurationsdateien in das Image
+COPY ./config /config
+
+# Definieren Sie Verzeichnisse, die Daten speichern sollen, damit diese erhalten bleiben
+VOLUME ["/config", "/data"]
+
+# Der Befehl zum Starten der Anwendung, wenn der Container läuft
+CMD ["python", "run_langflow.py"]
